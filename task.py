@@ -1,0 +1,65 @@
+class Task:
+	'''
+	task
+	'''
+	def __init__(self, task_name=None, time_limited=False,
+		amount_of_time=None, reverse_time=False, last_saved_time=None,
+		task_destination=None, zero_start=False):
+		self.task_name = task_name
+		self.time_limited = time_limited
+		self.amount_of_time = amount_of_time
+		self.reverse_time = reverse_time
+		self.last_saved_time = last_saved_time
+		self.task_destination = task_destination
+		self.zero_start = zero_start
+
+	# setters
+	def set_task_name(self, task_name):
+		self.task_name = task_name
+
+	def set_time_limited(self):
+		self.time_limited = True
+
+	def set_amount_of_time(self, amount_of_time):
+		self.amount_of_time = amount_of_time
+
+	def set_reverse_time(self):
+		self.reverse_time = True
+
+	def set_last_saved_time(self, time):
+		self.last_saved_time = time
+
+	def set_task_destination(self, time):
+		self.task_destination = time
+
+	def set_zero_start(self, cond):
+		self.zero_start = cond
+
+	# getters
+	def get_task_name(self):
+		return self.task_name
+
+	def get_time_limited(self):
+		return self.time_limited
+
+	def get_amount_of_time(self):
+		return self.amount_of_time
+
+	def get_reverse_time(self):
+		return self.reverse_time
+
+	def get_last_saved_time(self):
+		return self.last_saved_time
+
+	def get_task_destination(self):
+		return self.task_destination
+
+	def get_zero_start(self):
+		return self.zero_start
+
+	# str
+	def __str__(self):
+		if self.time_limited:
+			return f"- Task name: {self.task_name}\n- Time limited: {self.time_limited}\n- Amound of time: {self.amount_of_time}\n- Reverse time: {self.reverse_time}"
+		else:
+			return f"- Task name: {self.task_name}\n- Time limited: {self.time_limited}"

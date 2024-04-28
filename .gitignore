@@ -1,0 +1,8 @@
+# log folder
+tasks/
+
+# python files
+__pycache__/
+
+# side modules
+time_str_format.py
