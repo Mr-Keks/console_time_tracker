@@ -47,19 +47,28 @@ def main_menu_ui():
 
 # create task menu
 def create_task_ui():
+    clear_screen_and_print_title()
+    print("\tTask creation menu\n")
     # default properties
     task_amount_of_time=None
     task_start_positon=None
 
     task_name = input("Enter your task name: ")
-    task_time_limited = input("Do you want your task be time limited? (yes/no): ")
-    if task_time_limited == "yes":
+    type_of_stopwatch = input("What kind of stopwatch you want create?\n\t1) regular\n\t2) time limited ")
+    # task_time_limited = input("Do you want your task be time limited? (yes/no): ")
+    
+    # time limited stopwatch
+    if type_of_stopwatch == "2":
         task_time_limited = True
         task_amount_of_time = input("Set your time (minutes): ")
         task_start_positon = input("Do you prefer start your time from end? (yes/no): ")
         task_start_positon = True if task_start_positon == 'yes' else False
-    else:
+    # regular stopwatch
+    elif type_of_stopwatch == "1":
         task_time_limited = False
+    else: 
+        input("Wrong value!\nPlease select proper option! ...")
+        create_task_ui()
     # check task information
     print("\n\nYour tasks info:\n")
     print('Task name: ', task_name)
