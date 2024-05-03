@@ -4,7 +4,7 @@ class Task:
 	'''
 	def __init__(self, task_name=None, time_limited=False,
 		amount_of_time=None, reverse_time=False, last_saved_time=None,
-		task_destination=None, zero_start=False):
+		task_destination=None, zero_start=True):
 		self.task_name = task_name
 		self.time_limited = time_limited
 		self.amount_of_time = amount_of_time
