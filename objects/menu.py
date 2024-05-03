@@ -10,6 +10,6 @@ class Menu:
 		print("3. Exit")
 
 	def task_menu():
-		print("\n\n\tTask Menu\n\n")
+		print("\n\tTask Menu\n\n")
 		print("1. Start stopwatch")
 		print("2. Back to main menu")

@@ -22,5 +22,4 @@ def create_task(task_name, time_limited, amount_of_time, start_position):
             task.set_task_destination(int(task.get_amount_of_time()) * 60)
             task.set_last_saved_time(0)
     
-    print(task)
     save.save_task(task)

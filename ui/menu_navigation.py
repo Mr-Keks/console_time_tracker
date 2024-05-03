@@ -87,7 +87,8 @@ def create_task_ui():
         )
         
         print("\n\nYou successfuly created new file!")
-    main_menu_ui()
+        input("press any button...")
+        task_menu_ui(task_name)
 
 # task list menu
 
@@ -104,13 +105,14 @@ def task_list_menu_ui():
     task_menu_ui(tasks_list[int(task_index)-1])
 
 # task menu 
-def task_menu_ui(task_index):
+def task_menu_ui(task_name):
     clear_screen_and_print_title()
+    print("Task: ", task_name)
     Menu.task_menu()
     task_menu_selecter = input("Select: ")
 
     if task_menu_selecter == "1":
-        start_task_ui(task_index)
+        start_task_ui(task_name)
         input("press enter to back main menu...")
         main_menu_ui()
     elif task_menu_selecter == "2":
