@@ -2,7 +2,7 @@ import os
 
 # ui functions
 from objects.menu import Menu
-from ui.ui_handler import clear_screen_and_print_title
+from ui.ui_handler import clear_screen_and_print_title, check_range_of_option
 from ui.create_task_ui import CreateTaskUI
 
 # business logic
@@ -29,7 +29,12 @@ def main_menu_ui():
     clear_screen_and_print_title()
     Menu.main_menu() # print main menu
 
-    menu_option = input("Select: ")
+    menu_option = check_range_of_option(input("Select: "), 3)
+
+    if not menu_option:
+        print("Wrong option, press enter and try again!")
+        input("press something back to main menu...")
+        main_menu_ui()
 
     # create new task
     if menu_option == "1":
@@ -41,66 +46,12 @@ def main_menu_ui():
         print("Thank you for using this program!")
         time.sleep(0.5)
         sys.exit(0)
-    else:
-        print("Wrong option, press enter and try again!")
-        input("press something back to main menu...")
-        main_menu_ui()
-
-
-# create task menu
-# def create_task_ui():
-#     clear_screen_and_print_title()
-#     print("\tTask creation menu\n")
-#     # default properties
-#     task_amount_of_time=None
-#     task_start_positon=None
-
-#     task_name = input("Enter your task name: ")
-#     type_of_stopwatch = input("What kind of stopwatch you want create?\n\t1) regular\n\t2) time limited ")
-#     # task_time_limited = input("Do you want your task be time limited? (yes/no): ")
     
-#     # time limited stopwatch
-#     if type_of_stopwatch == "2":
-#         task_time_limited = True
-#         task_amount_of_time = input("Set your time (minutes): ")
-#         task_start_positon = input("Do you prefer start your time from end? (yes/no): ")
-#         task_start_positon = True if task_start_positon == 'yes' else False
-#     # regular stopwatch
-#     elif type_of_stopwatch == "1":
-#         task_time_limited = False
-#     else: 
-#         input("Wrong value!\nPlease select proper option! ...")
-#         create_task_ui()
-#     # check task information
-#     print("\n\nYour tasks info:\n")
-#     print('Task name: ', task_name)
-    # print('Task limited: ', task_time_limited)
-    # if task_time_limited == "yes":
-    #     print('Amount of lime: ', task_amount_of_time)
-    #     print('Task start postion: {}'.format(
-    #         task_amount_of_time+':00' if task_start_positon else '00:00'))
-
-    # confirm_task_creation = input("Create new task? (yes/no): ")
-    # if confirm_task_creation.lower() == "yes":
-    #     create_task(
-    #         task_name=task_name,
-    #         time_limited=task_time_limited,
-    #         amount_of_time=task_amount_of_time,
-    #         start_position=task_start_positon
-    #     )
-        
-    #     print("\n\nYou successfuly created new file!")
-    #     input("press any button...")
-    #     task_menu_ui(task_name)
-    # elif confirm_task_creation.lower() == "no":
-    #     main_menu_ui()
-    # else:
-    #     input("again...")
-    #     create_task_ui()
-
-# task list menu
 
 def task_list_menu_ui():
+    '''
+        print list of created tasks
+    '''
     clear_screen_and_print_title()
 
     tasks_list = load_data.check_tasks_list() # return list of exist tasks
@@ -109,25 +60,32 @@ def task_list_menu_ui():
     for index, task in enumerate(tasks_list, start=1):
         print(f"{index}. {task}")
 
-    task_index = input("Select your task: ")
-    task_menu_ui(tasks_list[int(task_index)-1])
+    task_index = check_range_of_option(input("Select your task: "), len(tasks_list))
+
+    if task_index:
+        task_menu_ui(tasks_list[int(task_index)-1])
+    else:
+        print('You entered invalid value!')
+        input('press any button...')
+        task_list_menu_ui()
 
 # task menu 
 def task_menu_ui(task_name):
     clear_screen_and_print_title()
     print("Task: ", task_name)
     Menu.task_menu()
-    task_menu_selecter = input("Select: ")
+    task_menu_selecter = check_range_of_option(input("Select: "), 2)
 
-    if task_menu_selecter == "1":
-        start_task_ui(task_name)
-        input("press enter to back main menu...")
-        main_menu_ui()
-    elif task_menu_selecter == "2":
-        main_menu_ui()
+    if task_menu_selecter:
+        if task_menu_selecter == "1":
+            start_task_ui(task_name)
+            input("press enter to back main menu...")
+            main_menu_ui()
+        elif task_menu_selecter == "2":
+            main_menu_ui()
     else:
         input("You put wrong value!...")
-        task_menu_ui()
+        task_menu_ui(task_name)
 
 # run stopwatch
 def start_task_ui(task_name):
