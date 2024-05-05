@@ -15,6 +15,10 @@ class CreateTaskUI:
     # input validation
 
     def yes_and_no_validation(self, option):
+        '''
+            check if option is 'yes' or 'no'
+            otherwise ask enter again
+        '''
         if option in ["yes", "no"]:
             return option
         else:
@@ -42,7 +46,8 @@ class CreateTaskUI:
     def select_type_of_stopwatch(self):
 
         '''
-            Type of stopwatch
+            check if select stopwatch '1' or '2' 
+            otherwise ask enter again
         '''
 
         print("What kind of stopwatch you want create?")
@@ -56,7 +61,15 @@ class CreateTaskUI:
 
     # time limited settings
     def time_limited_stopwatch(self):
+        '''
+            set time limited and start position properties
+        '''
         def set_amount_of_time():
+            '''
+                set amout of time
+                check if value is digit 
+                othewise ask enter again
+            '''
             task_amount_of_time = input("Set your time (minutes): ")
 
             if not task_amount_of_time.isdigit():
@@ -66,6 +79,11 @@ class CreateTaskUI:
                 self.task_amount_of_time = task_amount_of_time
 
         def set_start_positon():
+            '''
+                set start position 
+                check if value is 'yes' or 'no'
+                otherwise ask enter again
+            '''
             task_start_positon = self.yes_and_no_validation(input("Do you prefer start your time from end? (yes/no): "))
             self.task_start_positon = task_start_positon
             if self.task_start_positon:
@@ -112,6 +130,12 @@ class CreateTaskUI:
 
     # main function
     def create_task_ui(self):
+        '''
+            All properties are None as default 
+            When user enter invalid value then 'create_task_ui'
+            will be call again and those properties
+            what were set pass 'is None' condition
+        '''
         clear_screen_and_print_title()
         print("\tTask creation menu\n")
 
