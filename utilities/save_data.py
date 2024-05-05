@@ -5,6 +5,8 @@ from datetime import datetime
 
 from data.config import FOLDER_TASK_DATA_PATH, get_task_folder_path, get_task_file_path, get_log_task_file_path
 
+from utilities.load_data import LoadTask
+
 class SaveTask:
 	def __init__(self, task_name):
 		self.task_folder_path = get_task_folder_path(task_name)
@@ -43,7 +45,7 @@ class SaveTask:
 			# check if path exist
 			if not os.path.exists(self.task_folder_path):
 				# create task directory and files
-				self.create_task_folder_and_files()
+				self.create_task_folder_and_files()		
 
 			# writing task data
 			with open(self.task_file_path, "w") as file:
@@ -76,5 +78,5 @@ class SaveTask:
 				current_day:  {"spended_time": task_time}  # Create new entry for the current day
 			}
 		# Write the updated or new data back to the file
-		with open(self.task_log_file_path, "w") as file:
+		with open(self.task_log_file_path, "a") as file:
 			json.dump(log_task_data, file, indent=4)
