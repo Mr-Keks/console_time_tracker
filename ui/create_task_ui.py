@@ -4,6 +4,10 @@ from utilities.create_task import create_task
 from utilities.load_data import load_create_task_text_data
 
 
+def back_to_main_menu():
+    from ui.menu_navigation import main_menu_ui
+    return main_menu_ui()
+
 class CreateTaskUI:
     def __init__(self):
         # default properties
@@ -40,12 +44,10 @@ class CreateTaskUI:
         user_choise = input("press any button continue or 0 to back to main menu...")
 
         if user_choise == '0':
-            from ui.menu_navigation import main_menu_ui
-            return main_menu_ui()
+            back_to_main_menu()
         else:
             return self.create_task_ui()
-
-        
+    
     # type of stopwatch
     def select_type_of_stopwatch(self):
 
@@ -107,9 +109,8 @@ class CreateTaskUI:
         confirm_task_creation = self.yes_and_no_validation(option)
         if not confirm_task_creation:
             self.continue_or_back_to_main_menu()
-        return True
-
-        return confirm_task_creation
+        
+        return True if confirm_task_creation == "yes" else False
 
     def task_saving(self):
         ui_component = self.ui_text["task_saving"]
@@ -144,7 +145,7 @@ class CreateTaskUI:
             what were set pass 'is None' condition
         '''
 
-        # task info ui text
+        # task info ui compomponent
         ui_component = self.ui_text["create_task_ui"]["task_info"]
 
         clear_screen_and_print_title()
@@ -166,10 +167,6 @@ class CreateTaskUI:
                     self.time_limited_stopwatch = False
             
             # check task information
-            # print("\n\nYour tasks info:\n")
-            # print('Task name: ', self.task_name)
-            # print('Task limited: ', self.task_time_limited)
-
             print(ui_component["title"])
             print(ui_component["task_name"], self.task_name)
             print(ui_component["task_limited"], self.task_time_limited)
@@ -180,6 +177,11 @@ class CreateTaskUI:
 
             if self.task_confirmation():
                 self.task_saving()
+            else:
+                print("\n\nTask creating has been canceled.")
+                input("press any button to back to main menu...")
+                back_to_main_menu()
+                
         except ValueError:
             print("You have to enter numeric value!")
             self.continue_or_back_to_main_menu()
