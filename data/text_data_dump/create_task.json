@@ -1,0 +1,32 @@
+{
+    "create_task_ui": {
+        "task_info": {
+            "title": "\n\nYour task info\n",
+            "task_name": "Task name: ",
+            "task_limited": "Task limited: ",
+            "amount_of_time": "Amount of time: ",
+            "task_start_position": "Task start position: "
+        }
+    },
+    "input_task_name": {
+        "enter_name": "Enter your task name: "
+    },
+    "select_type_of_stopwatch": {
+        "type_of_stopwatch": "What kind of stopwatch you want create?",
+        "stopwatch_options": {
+            "options": ["\t1) regular\n", "\t2) time limited"],
+            "list": ["1", "2"],
+            "selection": "\nSelect: "
+        }
+    },
+    "time_limited_stopwatch": {
+        "set_amount_of_time": "Set your time (minutes): ",
+        "set_start_position": "Do you prefer start your time from end? (yes/no): "
+    },
+    "task_confirmation": {
+        "create_new_task": "Create new task? (yes/no): "
+    },
+    "task_saving": {
+        "success": "\n\nYou successfuly created new file!"
+    }
+}

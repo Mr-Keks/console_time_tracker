@@ -5,4 +5,4 @@ if __name__ == '__main__':
     try:
         main_menu_ui()
     except KeyboardInterrupt:
-        print("\nProgram was closed by user...")
+        print("\nProgram has been closed by user...")

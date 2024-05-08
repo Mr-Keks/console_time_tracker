@@ -1,7 +1,7 @@
 import json
 import os
 
-from data.config import FOLDER_TASK_DATA_PATH, get_task_folder_path, get_task_file_path, get_log_task_file_path
+from data.config import FOLDER_TASK_DATA_PATH, get_task_folder_path, get_task_file_path, get_log_task_file_path, get_ui_for_create_task
 from objects.task import Task
 
 class LoadTask:
@@ -57,3 +57,14 @@ def check_tasks_list():
             None
     except Exception as ex:
         pass
+
+def load_create_task_text_data():
+    '''
+        load text ui information for create_task_ui
+        method
+    '''
+    text_data_dump_folder = get_ui_for_create_task()
+    with open(text_data_dump_folder / "create_task.json", "r") as file:
+        data = json.load(file)
+
+    return data

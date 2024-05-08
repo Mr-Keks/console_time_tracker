@@ -59,9 +59,14 @@ def task_list_menu_ui():
     print("\nList of tasks:")
     for index, task in enumerate(tasks_list, start=1):
         print(f"{index}. {task}")
+    
+    # index back to main menu
+    print("\n0. back to main menu")
 
     task_index = check_range_of_option(input("Select your task: "), len(tasks_list))
 
+    if task_index == '0':
+        main_menu_ui()
     if task_index:
         task_menu_ui(tasks_list[int(task_index)-1])
     else:

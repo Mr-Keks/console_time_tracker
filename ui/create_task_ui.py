@@ -1,6 +1,7 @@
 from ui.ui_handler import clear_screen_and_print_title
 
 from utilities.create_task import create_task
+from utilities.load_data import load_create_task_text_data
 
 
 class CreateTaskUI:
@@ -11,6 +12,8 @@ class CreateTaskUI:
         self.task_time_limited = None
         self.task_name = None
         self.type_of_stopwatch = None
+        self.ui_text = load_create_task_text_data()
+        
 
     # input validation
 
@@ -51,10 +54,13 @@ class CreateTaskUI:
             otherwise ask enter again
         '''
 
-        print("What kind of stopwatch you want create?")
-        type_of_stopwatch = input("\t1) regular\n\t2) time limited ")
+        ui_component = self.ui_text["select_type_of_stopwatch"]
 
-        if type_of_stopwatch not in ["1", "2"]:
+        print(ui_component["type_of_stopwatch"])
+        print("".join(ui_component["stopwatch_options"]["options"]))
+        type_of_stopwatch = input(ui_component["stopwatch_options"]["selection"])
+
+        if type_of_stopwatch not in ui_component["stopwatch_options"]["list"]:
             raise IndexError
         
         return type_of_stopwatch
@@ -64,19 +70,15 @@ class CreateTaskUI:
         '''
             set time limited and start position properties
         '''
+        ui_component = self.ui_text["time_limited_stopwatch"]
         def set_amount_of_time():
             '''
                 set amout of time
                 check if value is digit 
                 othewise ask enter again
             '''
-            task_amount_of_time = int(input("Set your time (minutes): "))
+            task_amount_of_time = int(input(ui_component["set_amount_of_time"]))
 
-            # if not task_amount_of_time.isdigit():
-            #     print("You have to enter numeric value!")
-            #     self.continue_or_back_to_main_menu(self.create_task_ui)
-            # else:
-            #     self.task_amount_of_time = task_amount_of_time
             self.task_amount_of_time = task_amount_of_time
 
         def set_start_positon():
@@ -85,7 +87,7 @@ class CreateTaskUI:
                 check if value is 'yes' or 'no'
                 otherwise ask enter again
             '''
-            task_start_positon = self.yes_and_no_validation(input("Do you prefer start your time from end? (yes/no): "))
+            task_start_positon = self.yes_and_no_validation(input(ui_component["set_start_position"]))
             self.task_start_positon = task_start_positon
             if self.task_start_positon:
                 self.task_start_positon = True if self.task_start_positon == 'yes' else False
@@ -100,14 +102,17 @@ class CreateTaskUI:
         return True
 
     def task_confirmation(self):
-        option = input("Create new task? (yes/no): ")
+        ui_component = self.ui_text["task_confirmation"]
+        option = input(ui_component["create_new_task"])
         confirm_task_creation = self.yes_and_no_validation(option)
         if not confirm_task_creation:
             self.continue_or_back_to_main_menu()
+        return True
 
         return confirm_task_creation
 
     def task_saving(self):
+        ui_component = self.ui_text["task_saving"]
         create_task(
             task_name=self.task_name,
             time_limited=self.task_time_limited,
@@ -115,14 +120,15 @@ class CreateTaskUI:
             start_position=self.task_start_positon
         )
 
-        print("\n\nYou successfuly created new file!")
+        print(ui_component["success"])
         input("press any button...")
         from ui.menu_navigation import task_menu_ui
         task_menu_ui(self.task_name)
         
 
-    def enter_task_name(self):
-        task_name = input("Enter your task name: ")
+    def input_task_name(self):
+        ui_component = self.ui_text["input_task_name"]
+        task_name = input(ui_component["enter_name"])
 
         if task_name == "":
             print("You cannot create task with empty name!")
@@ -137,12 +143,16 @@ class CreateTaskUI:
             will be call again and those properties
             what were set pass 'is None' condition
         '''
+
+        # task info ui text
+        ui_component = self.ui_text["create_task_ui"]["task_info"]
+
         clear_screen_and_print_title()
         print("\tTask creation menu\n")
         try:
             if self.task_name is None:
                 # enter name of task
-                self.task_name = self.enter_task_name()
+                self.task_name = self.input_task_name()
 
             if self.type_of_stopwatch is None:
                 # select type of stopwatch
@@ -156,15 +166,19 @@ class CreateTaskUI:
                     self.time_limited_stopwatch = False
             
             # check task information
-            print("\n\nYour tasks info:\n")
-            print('Task name: ', self.task_name)
-            print('Task limited: ', self.task_time_limited)
+            # print("\n\nYour tasks info:\n")
+            # print('Task name: ', self.task_name)
+            # print('Task limited: ', self.task_time_limited)
+
+            print(ui_component["title"])
+            print(ui_component["task_name"], self.task_name)
+            print(ui_component["task_limited"], self.task_time_limited)
             if self.task_time_limited:
-                print('Amount of lime: ', self.task_amount_of_time)
-                print('Task start postion: {}'.format(
+                print(ui_component["amount_of_time"], self.task_amount_of_time)
+                print('{} {}'.format(ui_component["task_start_position"],
                     self.task_amount_of_time+':00' if self.task_start_positon else '00:00'))
 
-            if self.task_confirmation() == "yes":
+            if self.task_confirmation():
                 self.task_saving()
         except ValueError:
             print("You have to enter numeric value!")
