@@ -4,6 +4,7 @@ import os
 from objects.menu import Menu
 from ui.ui_handler import clear_screen_and_print_title, check_range_of_option
 from ui.create_task_ui import CreateTaskUI
+from ui.task_menu import task_menu_ui
 
 # business logic
 from utilities.create_task import create_task
@@ -73,24 +74,6 @@ def task_list_menu_ui():
         print('You entered invalid value!')
         input('press any button...')
         task_list_menu_ui()
-
-# task menu 
-def task_menu_ui(task_name):
-    clear_screen_and_print_title()
-    print("Task: ", task_name)
-    Menu.task_menu()
-    task_menu_selecter = check_range_of_option(input("Select: "), 2)
-
-    if task_menu_selecter:
-        if task_menu_selecter == "1":
-            start_task_ui(task_name)
-            input("press enter to back main menu...")
-            main_menu_ui()
-        elif task_menu_selecter == "2":
-            main_menu_ui()
-    else:
-        input("You put wrong value!...")
-        task_menu_ui(task_name)
 
 # run stopwatch
 def start_task_ui(task_name):

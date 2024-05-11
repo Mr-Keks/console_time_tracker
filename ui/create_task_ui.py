@@ -17,8 +17,7 @@ class CreateTaskUI:
         self.task_name = None
         self.type_of_stopwatch = None
         self.ui_text = load_create_task_text_data()
-        
-
+    
     # input validation
 
     def yes_and_no_validation(self, option):
