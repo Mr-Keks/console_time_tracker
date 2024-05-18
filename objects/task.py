@@ -2,9 +2,16 @@ class Task:
 	'''
 	task
 	'''
-	def __init__(self, task_name=None, time_limited=False,
-		amount_of_time=None, reverse_time=False, last_saved_time=None,
-		task_destination=None, zero_start=True):
+	def __init__(self, 
+			  task_name=None, 
+			  time_limited=False,
+			  amount_of_time=None, 
+			  reverse_time=False, 
+			  last_saved_time=None,
+			  task_destination=None, 
+			  zero_start=True):
+
+		# constructor body
 		self.task_name = task_name
 		self.time_limited = time_limited
 		self.amount_of_time = amount_of_time
@@ -57,9 +64,19 @@ class Task:
 	def get_zero_start(self):
 		return self.zero_start
 
-	# str
+	# display task information
 	def __str__(self):
 		if self.time_limited:
-			return f"- Task name: {self.task_name}\n- Time limited: {self.time_limited}\n- Amound of time: {self.amount_of_time}\n- Reverse time: {self.reverse_time}"
+			time_direction = 'begining-end' if not self.reverse_time else 'end-beging'
+			time_left = self.amount_of_time - self.last_saved_time
+
+			return "\n".join([f"- Task name: {self.task_name}", 
+			 			f"- Time limited: {self.time_limited}", 
+						f"- Time direction: {time_direction}",
+						f"- Time amount: {self.amount_of_time}", 
+						f"- Spended time: {self.last_saved_time}",
+						f"- Time left: {time_left}"]
+			)
+
 		else:
 			return f"- Task name: {self.task_name}\n- Time limited: {self.time_limited}"

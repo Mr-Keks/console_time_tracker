@@ -30,6 +30,10 @@ def show_task_info(task, task_name):
         input("press...")
         show_task_info()
 
+# edit task
+
+
+# task main menu
 def task_menu_ui(task_name):
     print_task_menu_header(task_name)
     Menu.task_menu()

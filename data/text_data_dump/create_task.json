@@ -20,7 +20,7 @@
         }
     },
     "time_limited_stopwatch": {
-        "set_amount_of_time": "Set your time (minutes): ",
+        "set_amount_of_time": "Set your time (hours:minutes): ",
         "set_start_position": "Do you prefer start your time from end? (yes/no): "
     },
     "task_confirmation": {

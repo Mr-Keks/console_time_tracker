@@ -78,9 +78,7 @@ class CreateTaskUI:
                 check if value is digit 
                 othewise ask enter again
             '''
-            task_amount_of_time = int(input(ui_component["set_amount_of_time"]))
-
-            self.task_amount_of_time = task_amount_of_time
+            self.task_amount_of_time = input(ui_component["set_amount_of_time"])
 
         def set_start_positon():
             '''
