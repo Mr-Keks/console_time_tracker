@@ -17,8 +17,8 @@ class Task:
 	def set_task_name(self, task_name):
 		self.task_name = task_name
 
-	def set_time_limited(self):
-		self.time_limited = True
+	def set_time_limited(self, value):
+		self.time_limited = value
 
 	def set_amount_of_time(self, amount_of_time):
 		self.amount_of_time = amount_of_time

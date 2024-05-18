@@ -9,6 +9,7 @@ def create_task(task_name, time_limited, amount_of_time, start_position):
 
     # fill up task data
     task.set_task_name(task_name)
+    task.set_time_limited(time_limited)
 
     if time_limited:
         task.set_amount_of_time(amount_of_time)
