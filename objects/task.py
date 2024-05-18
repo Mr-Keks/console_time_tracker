@@ -66,15 +66,17 @@ class Task:
 
 	# display task information
 	def __str__(self):
+		from utilities.validation import seconds_to_time_format
 		if self.time_limited:
 			time_direction = 'begining-end' if not self.reverse_time else 'end-beging'
-			time_left = self.task_destination - self.last_saved_time
+			time_left = seconds_to_time_format(self.task_destination - self.last_saved_time)
+			last_updated_time = seconds_to_time_format(self.last_saved_time)
 
 			return "\n".join([f"- Task name: {self.task_name}", 
 			 			f"- Time limited: {self.time_limited}", 
 						f"- Time direction: {time_direction}",
 						f"- Time amount: {self.amount_of_time}", 
-						f"- Spended time: {self.last_saved_time}",
+						f"- Spended time: {last_updated_time}",
 						f"- Time left: {time_left}"]
 			)
 
