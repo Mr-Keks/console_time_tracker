@@ -68,7 +68,7 @@ class Task:
 	def __str__(self):
 		if self.time_limited:
 			time_direction = 'begining-end' if not self.reverse_time else 'end-beging'
-			time_left = self.amount_of_time - self.last_saved_time
+			time_left = self.task_destination - self.last_saved_time
 
 			return "\n".join([f"- Task name: {self.task_name}", 
 			 			f"- Time limited: {self.time_limited}", 
