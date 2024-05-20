@@ -9,6 +9,10 @@ def back_to_main_menu():
     from ui.menu_navigation import main_menu_ui
     main_menu_ui()
 
+def back_to_task_list():
+    from ui.menu_navigation import task_list_menu_ui
+    task_list_menu_ui()
+
 def print_task_menu_header(task_name):
     clear_screen_and_print_title()
     print("\t\t\t Task: ", task_name, "\n")
@@ -54,8 +58,11 @@ def task_menu_ui(task_name):
         # edit task
         elif task_menu_selecter == "3":
             pass
-        # back to main menu
+        # back to task list
         elif task_menu_selecter == "4":
+            back_to_task_list()
+        # back to main menu
+        elif task_menu_selecter == "5":
             back_to_main_menu()
     else:
         input("You put wrong value!...")

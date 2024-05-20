@@ -14,7 +14,8 @@ class Menu:
 		print("1. Start stopwatch")
 		print("2. Show task info")
 		print("3. Edit task")
-		print("4. Back to main menu")
+		print("4. Back to task list")
+		print("5. Back to main menu")
 	
 	def task_menu_show_info(task_info):
 		print("\n\tTask Info\n\n")
