@@ -1,5 +1,7 @@
 import time
 
+from ui.ui_handler import clear_screen_and_print_title
+
 class Stopwatch:
 	'''
 	Stopwatch class for tracking time.
@@ -102,8 +104,9 @@ class Stopwatch:
 		time_difference = self.compare_times()
 		minutes = int(time_difference // 60)
 		seconds = int(time_difference % 60)
-
-		return f"You spend now: {minutes} minutes and {seconds} seconds!"
+		
+		clear_screen_and_print_title()
+		return f"You spended now: {minutes} minutes and {seconds} seconds!"
 
 	def display_time(self):
 		'''Display time including milliseconds.'''

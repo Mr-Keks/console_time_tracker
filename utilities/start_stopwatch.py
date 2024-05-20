@@ -38,13 +38,13 @@ def start_task(task_name):
 	stopwatch.display_time()
 	enter_thread.join()
 
-	print("\nStopwatch stopped.")
-	print(stopwatch.display_compare_times())
 	task.set_last_saved_time(stopwatch.last_updated_time)
 
 	# saving task data
 	saving = save_data.SaveTask(task_name)
 	saving.save_task(task)
 	saving.save_task_log(stopwatch.compare_times())
+
+	return stopwatch.display_compare_times()
 
 	

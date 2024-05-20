@@ -48,7 +48,7 @@ def task_menu_ui(task_name):
             from ui.menu_navigation import start_task_ui
 
             start_task_ui(task_name)
-            input("press enter to back main menu...")
+            input("\npress enter to back main menu...")
             back_to_main_menu()
         # show task info
         elif task_menu_selecter == "2":

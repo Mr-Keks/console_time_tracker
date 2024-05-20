@@ -75,16 +75,22 @@ def task_list_menu_ui():
         input('press any button...')
         task_list_menu_ui()
 
+# task logo
+def print_task_logo(task_name):
+    clear_screen_and_print_title()
+    print(f"\nTask: {task_name}\n")
+
 # run stopwatch
 def start_task_ui(task_name):
-    print(f"\nTask: {task_name}")
-    print("Press Enter to start the stopwatch...")
+    print_task_logo(task_name)
+    print("Press any button to start the stopwatch...")
     input()
+
+    print_task_logo(task_name)
     print("Stopwatch started.")
 
-    stopwatch = start_task(task_name)
+    spended_time = start_task(task_name)
 
+    print_task_logo(task_name)
     print("\nStopwatch stopped.")
-    print(stopwatch)
-
-    input("press enter to back main menu...")
+    print(spended_time)
