@@ -29,7 +29,6 @@ def int_time_format(str_time):
     return int(hours)*60*60 + int(minutes)*60
 
 def seconds_to_time_format(seconds):
-    print(seconds)
     hours = int(seconds // 3600)
     remaining_seconds = int(seconds % 3600)
     minutes = int(remaining_seconds // 60)

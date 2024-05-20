@@ -17,12 +17,12 @@ def print_task_menu_header(task_name):
     clear_screen_and_print_title()
     print("\t\t\t Task: ", task_name, "\n")
 
-
+# task info menu
 def show_task_info(task, task_name):
     print_task_menu_header(task_name)
     Menu.task_menu_show_info(task.__str__())
 
-    menu_selecter = check_range_of_option(input("Select: "), 2)
+    menu_selecter = check_range_of_option(input("\nSelect: "), 2)
     
     if menu_selecter:
         if menu_selecter == "1":
@@ -32,9 +32,7 @@ def show_task_info(task, task_name):
     else: 
         print("You selected unavaliable value!")
         input("press...")
-        show_task_info()
-
-# edit task
+        show_task_info(task, task_name)
 
 
 # task main menu
@@ -42,7 +40,7 @@ def task_menu_ui(task_name):
     print_task_menu_header(task_name)
     Menu.task_menu()
     task = LoadTask(task_name).open_task_file()
-    task_menu_selecter = check_range_of_option(input("Select: "), 4)
+    task_menu_selecter = check_range_of_option(input("\nSelect: "), 4)
 
     if task_menu_selecter:
         # start stopwatch
