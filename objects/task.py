@@ -24,8 +24,8 @@ class Task:
 	def set_task_name(self, task_name):
 		self.task_name = task_name
 
-	def set_time_limited(self, value):
-		self.time_limited = value
+	def set_time_limited(self):
+		self.time_limited = not self.time_limited
 
 	def set_amount_of_time(self, amount_of_time):
 		self.amount_of_time = amount_of_time
@@ -39,8 +39,8 @@ class Task:
 	def set_task_destination(self, time):
 		self.task_destination = time
 
-	def set_zero_start(self, cond):
-		self.zero_start = cond
+	def set_zero_start(self):
+		self.zero_start = not self.zero_start
 
 	# getters
 	def get_task_name(self):

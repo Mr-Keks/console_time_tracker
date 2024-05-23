@@ -9,6 +9,7 @@ class Menu:
 		print("2. Select task")
 		print("3. Exit")
 
+	# kind of task menu
 	def task_menu():
 		print("\n\tTask Menu\n\n")
 		print("1. Start stopwatch")
@@ -22,3 +23,16 @@ class Menu:
 		print(task_info)
 		print("\n1. Edit task")
 		print("2. Back to task menu")
+	
+	def task_edit_menu(time_limited):
+		print("\n\tEdit Task\n\n")
+		print("1. Change 'task name'")
+		print("2. Change 'time limited'")
+		if time_limited:
+			print("3. Change 'task name'")
+			print("4. Change 'task name'")
+			print("5. Back to task menu")
+		else:
+			print("3. Back to task menu")
+
+
