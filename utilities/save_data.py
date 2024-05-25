@@ -80,3 +80,8 @@ class SaveTask:
 		# Write the updated or new data back to the file
 		with open(self.task_log_file_path, "a") as file:
 			json.dump(log_task_data, file, indent=4)
+	
+	def change_file_name(self, new_name):
+		os.rename(self.task_file_path, self.task_folder_path / (new_name + ".json"))
+		os.rename(self.task_folder_path, FOLDER_TASK_DATA_PATH / new_name)
+		

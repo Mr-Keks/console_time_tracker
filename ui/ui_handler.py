@@ -13,7 +13,7 @@ def check_range_of_option(input_value, options_range):
         function generate range of list values
         and check if user input value in this range
     '''
-    options_range = [str(option) for option in range(options_range+1)]
+    options_range = [str(option) for option in range(1, options_range+1)]
     
     if input_value in options_range:
         return input_value

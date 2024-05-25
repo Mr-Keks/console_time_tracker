@@ -19,12 +19,14 @@ def str_time_format(str_time):
         examples: 100:00:00; 00:45:00
     '''
 
-    hours, minutes = str_time.split(":")
+    text_time = str_time.split(":")
+    hours, minutes = text_time[0], text_time[1]
 
     return ":".join([add_zero(hours), add_zero(minutes), "00"])
 
 def int_time_format(str_time):
-    hours, minutes = str_time.split(":")
+    text_time = str_time.split(":")
+    hours, minutes = text_time[0], text_time[1]
    
     return int(hours)*60*60 + int(minutes)*60
 

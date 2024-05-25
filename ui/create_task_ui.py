@@ -179,7 +179,8 @@ class CreateTaskUI:
                 input("press any button to back to main menu...")
                 back_to_main_menu()
                 
-        except ValueError:
+        except ValueError as ex:
+            print(ex)
             print("You have to enter numeric value!")
             self.continue_or_back_to_main_menu()
         except IndexError:

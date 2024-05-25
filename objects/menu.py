@@ -29,8 +29,8 @@ class Menu:
 		print("1. Change 'task name'")
 		print("2. Change 'time limited'")
 		if time_limited:
-			print("3. Change 'task name'")
-			print("4. Change 'task name'")
+			print("3. Change 'time amount'")
+			print("4. Change 'start position'")
 			print("5. Back to task menu")
 		else:
 			print("3. Back to task menu")

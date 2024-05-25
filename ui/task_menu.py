@@ -26,7 +26,7 @@ def show_task_info(task, task_name):
     
     if menu_selecter:
         if menu_selecter == "1":
-            pass
+            edit_task(task)
         elif menu_selecter == "2":
             task_menu_ui(task_name)
     else: 
@@ -39,7 +39,7 @@ def show_task_info(task, task_name):
 def edit_task(task):
     print_task_menu_header(task.get_task_name())
     Menu.task_edit_menu(task.get_time_limited())
-    list_range = 5 if task.get_time_limited() else 3 
+    list_range = 5 if task.get_time_limited() else 3
     edit_menu_selecter = select_option(list_range)
 
     # update task name
@@ -66,7 +66,7 @@ def task_menu_ui(task_name):
     print_task_menu_header(task_name)
     Menu.task_menu()
     task = LoadTask(task_name).open_task_file()
-    task_menu_selecter = check_range_of_option(input("\nSelect: "), 4)
+    task_menu_selecter = check_range_of_option(input("\nSelect: "), 5)
 
     if task_menu_selecter:
         # start stopwatch
