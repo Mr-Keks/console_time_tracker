@@ -2,7 +2,7 @@ import os
 
 # ui functions
 from objects.menu import Menu
-from ui.ui_handler import clear_screen_and_print_title, check_range_of_option
+from ui.ui_handler import clear_screen_and_print_title, check_range_of_option, task_creation_menu_header
 from ui.create_task_ui import CreateTaskUI
 from ui.task_menu import task_menu_ui
 
@@ -39,7 +39,7 @@ def main_menu_ui():
 
     # create new task
     if menu_option == "1":
-        CreateTaskUI().create_task_ui()
+        CreateTaskUI(header=task_creation_menu_header()).create_task_ui()
     # select exist tasks
     elif menu_option == "2":
         task_list_menu_ui()

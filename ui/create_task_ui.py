@@ -10,12 +10,16 @@ def back_to_main_menu():
 
 class CreateTaskUI:
     def __init__(self, 
+            header,
             task_name=None,
             task_time_limited=None,
             task_amount_of_time=None,
             task_start_position=None,
             type_of_stopwatch=None):
         
+        # set header
+        self.header = header
+
         # set local variables
         self.task_amount_of_time = task_amount_of_time
         self.task_start_position = task_start_position
@@ -153,19 +157,19 @@ class CreateTaskUI:
         # task info ui compomponent
         ui_component = self.ui_text["create_task_ui"]["task_info"]
 
-        clear_screen_and_print_title()
-        print("\tTask creation menu\n")
-
         try:
             if self.task_name is None:
+                self.header()
                 # enter name of task
                 self.task_name = self.input_task_name()
 
             if self.type_of_stopwatch is None:
+                self.header()
                 # select type of stopwatch
                 self.type_of_stopwatch = self.select_type_of_stopwatch()
             
             if self.task_time_limited is None:
+                self.header()
                 # time limited stopwatch settings
                 if self.type_of_stopwatch == False:
                     self.task_time_limited = self.time_limited_stopwatch()
@@ -173,6 +177,7 @@ class CreateTaskUI:
                     self.time_limited_stopwatch = self.type_of_stopwatch
             
             # check task information
+            self.header()
             print(ui_component["title"])
             print(ui_component["task_name"], self.task_name)
             print(ui_component["task_limited"], self.task_time_limited)

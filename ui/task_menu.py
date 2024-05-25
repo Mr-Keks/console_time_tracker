@@ -1,4 +1,4 @@
-from ui.ui_handler import clear_screen_and_print_title, check_range_of_option, print_task_menu_header
+from ui.ui_handler import check_range_of_option, task_menu_header
 
 from objects.menu import Menu
 
@@ -19,7 +19,7 @@ def back_to_task_list():
 
 # task info menu
 def show_task_info(task, task_name):
-    print_task_menu_header(task_name)
+    task_menu_header(task_name)
     Menu.task_menu_show_info(task.__str__())
 
     menu_selecter = check_range_of_option(input("\nSelect: "), 2)
@@ -37,7 +37,7 @@ def show_task_info(task, task_name):
 # edit task
 
 def edit_task(task):
-    print_task_menu_header(task.get_task_name())
+    task_menu_header(task.get_task_name())
     Menu.task_edit_menu(task.get_time_limited())
     list_range = 5 if task.get_time_limited() else 3
     edit_menu_selecter = select_option(list_range)
@@ -63,7 +63,7 @@ def edit_task(task):
 
 # task main menu
 def task_menu_ui(task_name):
-    print_task_menu_header(task_name)
+    task_menu_header(task_name)
     Menu.task_menu()
     task = LoadTask(task_name).open_task_file()
     task_menu_selecter = check_range_of_option(input("\nSelect: "), 5)
