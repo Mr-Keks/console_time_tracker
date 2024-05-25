@@ -71,10 +71,10 @@ class CreateTaskUI:
 
         print(ui_component["type_of_stopwatch"])
         print("".join(ui_component["stopwatch_options"]["options"]))
-        type_of_stopwatch = True if input(ui_component["stopwatch_options"]["selection"]) == '2' else False
+        type_of_stopwatch = False if input(ui_component["stopwatch_options"]["selection"]) == '2' else True
 
-        if type_of_stopwatch not in ui_component["stopwatch_options"]["list"]:
-            raise IndexError
+        # if type_of_stopwatch not in ui_component["stopwatch_options"]["list"]:
+        #     raise IndexError
         
         return type_of_stopwatch
 
@@ -110,7 +110,7 @@ class CreateTaskUI:
         if self.task_start_position is None:
             set_start_positon()
 
-        return self.type_of_stopwatch
+        return not self.type_of_stopwatch
 
     def task_confirmation(self):
         ui_component = self.ui_text["task_confirmation"]

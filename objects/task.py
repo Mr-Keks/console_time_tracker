@@ -6,7 +6,7 @@ class Task:
 			  task_name=None, 
 			  time_limited=False,
 			  amount_of_time=None, 
-			  reverse_time=False, 
+			  reverse_time=None, 
 			  last_saved_time=None,
 			  task_destination=None, 
 			  zero_start=True):

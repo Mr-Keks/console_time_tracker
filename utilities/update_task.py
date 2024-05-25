@@ -20,7 +20,7 @@ def update_time_limited(task):
     user_seletion = input(f"Do you want switch to {type_of_stopwatch} stopwatch? (yes/no): ")
 
     if user_seletion == "yes": 
-        task.set_time_limited(None)
+        task.set_time_limited(not task.get_time_limited)
     
     update_task_data(task, section_header)
 
