@@ -9,13 +9,21 @@ def back_to_main_menu():
     return main_menu_ui()
 
 class CreateTaskUI:
-    def __init__(self):
-        # default properties
-        self.task_amount_of_time=None
-        self.task_start_positon=None
-        self.task_time_limited = None
-        self.task_name = None
-        self.type_of_stopwatch = None
+    def __init__(self, 
+            task_name=None,
+            task_time_limited=None,
+            task_amount_of_time=None,
+            task_start_position=None,
+            type_of_stopwatch=None):
+        
+        # set local variables
+        self.task_amount_of_time = task_amount_of_time
+        self.task_start_position = task_start_position
+        self.task_time_limited = task_time_limited
+        self.task_name = task_name
+        self.type_of_stopwatch = type_of_stopwatch
+
+        # load ui text component
         self.ui_text = load_create_task_text_data()
     
     # input validation
@@ -59,7 +67,7 @@ class CreateTaskUI:
 
         print(ui_component["type_of_stopwatch"])
         print("".join(ui_component["stopwatch_options"]["options"]))
-        type_of_stopwatch = input(ui_component["stopwatch_options"]["selection"])
+        type_of_stopwatch = True if input(ui_component["stopwatch_options"]["selection"]) == '2' else False
 
         if type_of_stopwatch not in ui_component["stopwatch_options"]["list"]:
             raise IndexError
@@ -95,10 +103,10 @@ class CreateTaskUI:
 
         if self.task_amount_of_time is None:
             set_amount_of_time()
-        if self.task_start_positon is None:
+        if self.task_start_position is None:
             set_start_positon()
 
-        return True
+        return self.type_of_stopwatch
 
     def task_confirmation(self):
         ui_component = self.ui_text["task_confirmation"]
@@ -115,7 +123,7 @@ class CreateTaskUI:
             task_name=self.task_name,
             time_limited=self.task_time_limited,
             amount_of_time=self.task_amount_of_time,
-            start_position=self.task_start_positon
+            start_position=self.task_start_position
         )
 
         print(ui_component["success"])
@@ -147,6 +155,7 @@ class CreateTaskUI:
 
         clear_screen_and_print_title()
         print("\tTask creation menu\n")
+
         try:
             if self.task_name is None:
                 # enter name of task
@@ -158,10 +167,10 @@ class CreateTaskUI:
             
             if self.task_time_limited is None:
                 # time limited stopwatch settings
-                if self.type_of_stopwatch == "2":
+                if self.type_of_stopwatch == False:
                     self.task_time_limited = self.time_limited_stopwatch()
                 else:
-                    self.time_limited_stopwatch = False
+                    self.time_limited_stopwatch = self.type_of_stopwatch
             
             # check task information
             print(ui_component["title"])
@@ -170,7 +179,7 @@ class CreateTaskUI:
             if self.task_time_limited:
                 print(ui_component["amount_of_time"], self.task_amount_of_time)
                 print('{} {}'.format(ui_component["task_start_position"],
-                    self.task_amount_of_time+':00' if self.task_start_positon else '00:00'))
+                    self.task_amount_of_time+':00' if self.task_start_position else '00:00'))
 
             if self.task_confirmation():
                 self.task_saving()
@@ -180,7 +189,6 @@ class CreateTaskUI:
                 back_to_main_menu()
                 
         except ValueError as ex:
-            print(ex)
             print("You have to enter numeric value!")
             self.continue_or_back_to_main_menu()
         except IndexError:
