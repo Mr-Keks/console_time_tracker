@@ -69,7 +69,7 @@ class Task:
 		from utilities.validation import seconds_to_time_format
 		if self.time_limited:
 			time_direction = 'begining-end' if not self.reverse_time else 'end-beging'
-			time_left = seconds_to_time_format(self.task_destination - self.last_saved_time)
+			time_left = seconds_to_time_format(abs(self.task_destination - self.last_saved_time))
 			last_updated_time = seconds_to_time_format(self.last_saved_time)
 
 			return "\n".join([f"- Task name: {self.task_name}", 
