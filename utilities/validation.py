@@ -2,7 +2,7 @@ def number_validation(number):
     '''
     check if number is digit value
     '''
-    return number.isdigit
+    return number.isdigit()
 
 def add_zero(time):
         '''

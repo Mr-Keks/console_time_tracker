@@ -3,6 +3,8 @@ from ui.ui_handler import clear_screen_and_print_title
 from utilities.create_task import create_task
 from utilities.load_data import load_create_task_text_data
 
+from utilities.validation import number_validation
+
 
 def back_to_main_menu():
     from ui.menu_navigation import main_menu_ui
@@ -90,7 +92,12 @@ class CreateTaskUI:
                 check if value is digit 
                 othewise ask enter again
             '''
-            self.task_amount_of_time = input(ui_component["set_amount_of_time"])
+
+            task_amount_of_time = input(ui_component["set_amount_of_time"])
+            if number_validation(task_amount_of_time):
+                self.task_amount_of_time = task_amount_of_time    
+            else:
+                raise ValueError
 
         def set_start_positon():
             '''
@@ -194,7 +201,7 @@ class CreateTaskUI:
                 back_to_main_menu()
                 
         except ValueError as ex:
-            print("You have to enter numeric value!")
+            print("\nYou have to put a numeric value!")
             self.continue_or_back_to_main_menu()
         except IndexError:
             print("you selected value that not valid!\nplease select good one!")
