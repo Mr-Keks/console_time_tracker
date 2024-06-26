@@ -3,7 +3,7 @@ from ui.ui_handler import clear_screen_and_print_title
 from utilities.create_task import create_task
 from utilities.load_data import load_create_task_text_data
 
-from utilities.validation import number_validation
+from utilities.validation import number_validation, yes_and_no_validation
 
 
 def back_to_main_menu():
@@ -31,19 +31,6 @@ class CreateTaskUI:
 
         # load ui text component
         self.ui_text = load_create_task_text_data()
-    
-    # input validation
-
-    def yes_and_no_validation(self, option):
-        '''
-            check if option is 'yes' or 'no'
-            otherwise ask enter again
-        '''
-        if option.lower() in ["yes", "no"]:
-            return option
-        else:
-            print("Please put down 'yes' or 'no'!")
-            self.continue_or_back_to_main_menu()
 
     # stop or continue
     def continue_or_back_to_main_menu(self):
@@ -96,8 +83,6 @@ class CreateTaskUI:
             task_amount_of_time = input(ui_component["set_amount_of_time"])
             if number_validation(task_amount_of_time):
                 self.task_amount_of_time = task_amount_of_time    
-            else:
-                raise ValueError
 
         def set_start_positon():
             '''
@@ -105,7 +90,7 @@ class CreateTaskUI:
                 check if value is 'yes' or 'no'
                 otherwise ask enter again
             '''
-            task_start_positon = self.yes_and_no_validation(input(ui_component["set_start_position"]))
+            task_start_positon = yes_and_no_validation(input(ui_component["set_start_position"]))
             self.task_start_positon = task_start_positon
             if self.task_start_positon:
                 self.task_start_positon = True if self.task_start_positon == 'yes' else False
@@ -122,7 +107,7 @@ class CreateTaskUI:
     def task_confirmation(self):
         ui_component = self.ui_text["task_confirmation"]
         option = input(ui_component["create_new_task"])
-        confirm_task_creation = self.yes_and_no_validation(option)
+        confirm_task_creation = yes_and_no_validation(option)
         if not confirm_task_creation:
             self.continue_or_back_to_main_menu()
         
@@ -187,7 +172,7 @@ class CreateTaskUI:
             self.header()
             print(ui_component["title"])
             print(ui_component["task_name"], self.task_name)
-            print(ui_component["task_limited"], self.task_time_limited)
+            print(ui_component["task_limited"], "yes" if self.task_time_limited else "no")
             if self.task_time_limited:
                 print(ui_component["amount_of_time"], self.task_amount_of_time)
                 print('{} {}'.format(ui_component["task_start_position"],

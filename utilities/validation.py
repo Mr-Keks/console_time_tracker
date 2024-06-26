@@ -1,9 +1,29 @@
+# input validation
 def number_validation(number):
     '''
     check if number is digit value
     '''
-    return number.isdigit()
+    
+    try:
+        check_if_digit =  [num.isdigit() for num in number.split(':')]
+        return False if False in check_if_digit else True
+    except SyntaxError:
+        raise ValueError
 
+
+def yes_and_no_validation(option):
+    '''
+        check if option is 'yes' or 'no'
+        otherwise ask enter again
+    '''
+    if option.lower() in ["yes", "no"]:
+        return option
+    # ADD VALIDATION
+    # else:
+    #     print("Please put down 'yes' or 'no'!")
+    #     return None
+
+# set time format
 def add_zero(time):
         '''
             adding zero prefix
