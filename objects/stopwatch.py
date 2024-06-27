@@ -6,7 +6,7 @@ class Stopwatch:
 	'''
 	Stopwatch class for tracking time.
 
-	Logic expanation:
+	Logic explanation:
 	1. take start values 
 	For start program we need last updated time and destination time (if it's time limited)
 	In method start

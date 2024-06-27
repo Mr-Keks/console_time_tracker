@@ -1,12 +1,11 @@
 # input validation
 def number_validation(number):
     '''
-    check if number is digit value
+    check if string is digit value
     '''
     
     try:
-        check_if_digit =  [num.isdigit() for num in number.split(':')]
-        return False if False in check_if_digit else True
+        return False not in [num.isdigit() for num in number.split(':')]
     except SyntaxError:
         raise ValueError
 
